@@ -7,6 +7,7 @@ router = APIRouter()
 @router.post("/store-coordinates")
 def store_coordinates(coordinates: CoordinatesResponse, ip: str):
     save_coordinates(coordinates, ip)
+    return {"ip": ip, **coordinates.model_dump()}
 
 @router.get("/coordinates")
 def list_coordinates():
