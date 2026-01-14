@@ -1,4 +1,13 @@
 services:
+  service-a:
+    build:
+      context: ./service-a
+      dockerfile: app/Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - service-b
+
   redis:
     image: "redis:alpine"
     volumes:

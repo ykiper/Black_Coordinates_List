@@ -7,12 +7,9 @@ from services import add_ip_location
 router = APIRouter()
 
 
-@router.post("/coordinates", response_model=CoordinatesResponse)
-def add_ip(ip: IP):
-    try:
-        return add_ip_location(str(ip.ip_address))
-    except Exception as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+@router.post("/add_ip")
+def add_ip(ip_address: IP):
+    return add_ip_location(ip_address)
 
 
 
