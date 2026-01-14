@@ -1,7 +1,5 @@
-import os
-
 import requests
-
+from schemas import CoordinatesResponse
 
 def get_ip_location(ip: IP):
     response = requests.get(f"http://ip-api.com/json/{ip.ip_address}")
