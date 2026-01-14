@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-a
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api1
+  template:
+    metadata:
+      labels:
+        app: api1
+    spec:
+      containers:
+      - name: api
+        image: ykipper1/service-a:v1
+        ports:
+        - containerPort: 8000
