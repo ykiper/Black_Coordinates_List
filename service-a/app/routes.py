@@ -6,9 +6,9 @@ from services import add_ip_location
 router = APIRouter()
 
 
-@router.post
+@router.post("/add_ip")
 def add_ip(ip_address: IP):
-    return add_ip_location()
+    return add_ip_location(ip_address)
 
 
 

@@ -2,13 +2,16 @@ from schemas import IP, CoordinatesResponse
 import requests
 
 
-def get_ip_location(ip_address):
-    response = requests.get(f'http://ip-api.com/json/{ip_address}')
+def get_ip_location(ip: IP):
+    response = requests.get(f"http://ip-api.com/json/{ip.ip_address}")
     loc_tuple = response.json()["lat"], response.json()["lon"]
     return loc_tuple
 
 
+def add_ip_location(ip: IP):
+    lat, lon = get_ip_location(ip)
+    coord = CoordinatesResponse(lat=lat, lon=lon)
+    requests.post("http://service-b:8001/api/v1/store-coordinates", json=coord.model_dump(), params={"ip": str(ip.ip_address)})
 
-def add_ip_location(ip_address):
-    loc_tuple = get_ip_location(ip_address)
-    requests.post("http://127.0.0.1:8001", loc_tuple[0], loc_tuple[1])
+
+
