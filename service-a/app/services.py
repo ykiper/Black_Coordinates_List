@@ -1,6 +1,6 @@
-import os
-
+from schemas import IP, CoordinatesResponse
 import requests
+
 
 
 def get_ip_location(ip: IP):
